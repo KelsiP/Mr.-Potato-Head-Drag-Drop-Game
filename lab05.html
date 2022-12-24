@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+    <head>
+    <meta charset="UFT-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mr. Potato Game</title>
+    <link rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <h1>Mr. Potato Head</h1><br>
+    <h3>Drag and drop his facial features and download the image!</h3><br>
+    <style>
+        .body-img{
+            float: left;
+            padding-top: 50px;
+            margin: 20px;
+            border: 3px solid red;
+        }
+        #draggable-nose {
+            width: 120px; height: 120px; 
+            float: left;
+        };
+        #draggable-mouth {
+            width: 40px; height: 40px;
+            float: right;
+        };
+        #draggable-eyes {
+            width: 40px; height: 40px;
+            float: right;
+        };
+        #draggable-hat {
+            width: 10px; height: 10px;
+            float: right;
+        }
+        .parts {
+            float: right;
+        }
+
+        h1{
+            padding: 2px;
+        }
+        h3{
+            padding: 4px;
+        }
+        .img-position{
+            padding: 8%;
+        }
+    </style>
+    </head>
+    <body>
+        <div id ="capture" style="background: plum">
+            <img src = "body2.png" height="550px" width="400px">
+
+            <div id="draggable-nose">
+                <img src = nose.png >
+            </div>
+            
+            <div id="draggable-mouth">
+                <img src = "mouth.png" height="150px" width="300px">
+            </div>
+            <div id="draggable-eyes">
+                <img src = "eyes.png" height="100px" width="200px">
+            </div>
+            <div id="draggable-hat">
+                <img src = "hat.png" height="200px" width="400px">
+            </div>
+        </div>
+
+        <button id="downloadimg">Download Image</button>
+        <script>
+            $( function nos() {
+                $( "#draggable-nose" ).draggable();
+            } );
+            $( function mout() {
+                $( "#draggable-mouth" ).draggable();
+            } );
+            $( function eye() {
+                $( "#draggable-eyes" ).draggable();
+            } );
+            $( function ha() {
+                $( "#draggable-hat" ).draggable();
+            } );
+
+            function capture() {
+                html2canvas(document.querySelector('#capture')).then(canvas => {
+                    document.body.appendChild(canvas)
+                    return canvas
+                })
+                .then(canvas => {
+                    const a = document.createElement('a')
+                    a.setAttribute('download', 'mrPotatoHead.png')
+                    a.setAttribute('href', (canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')))
+                    a.click()
+                    canvas.remove()
+                })
+            }
+
+            const downloadimg = document.querySelector('#downloadimg')
+            downloadimg.addEventListener('click', capture)
+
+
+            //Q2:
+            function zoomin(){
+                document.getElementById("banff").style.cursor="zoom-in";
+                document.getElementById("banff").style.transform = "scale(5)";
+                document.getElementById("banff").style.transition = "transform 1.5s";
+            }
+
+            function zoomout(){
+                document.getElementById("banff").style.transform = "scale(1)";
+                document.getElementById("banff").style.cursor="zoom-out";
+            }
+
+        </script>
+
+        <!-- Q2: -->
+        <h1>Zoom-in Zoom-out</h1>
+        <h3>Hover over the image to zoom-in and click to zoom-out</h3>
+
+        <div class="img-position" style="text-align: center">
+            <img src="banff2.jpg" id="banff" onmouseover="zoomin()" onclick="zoomout()" class="&#xF62D" width="300px" height="200px">
+          </div>
+    </body>
+</html>
