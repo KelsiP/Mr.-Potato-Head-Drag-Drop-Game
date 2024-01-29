@@ -69,58 +69,6 @@
         </div>
 
         <button id="downloadimg">Download Image</button>
-        <script>
-            $( function nos() {
-                $( "#draggable-nose" ).draggable();
-            } );
-            $( function mout() {
-                $( "#draggable-mouth" ).draggable();
-            } );
-            $( function eye() {
-                $( "#draggable-eyes" ).draggable();
-            } );
-            $( function ha() {
-                $( "#draggable-hat" ).draggable();
-            } );
-
-            function capture() {
-                html2canvas(document.querySelector('#capture')).then(canvas => {
-                    document.body.appendChild(canvas)
-                    return canvas
-                })
-                .then(canvas => {
-                    const a = document.createElement('a')
-                    a.setAttribute('download', 'mrPotatoHead.png')
-                    a.setAttribute('href', (canvas.toDataURL('image/png').replace('image/png', 'image/octet-stream')))
-                    a.click()
-                    canvas.remove()
-                })
-            }
-
-            const downloadimg = document.querySelector('#downloadimg')
-            downloadimg.addEventListener('click', capture)
-
-
-            //Q2:
-            function zoomin(){
-                document.getElementById("banff").style.cursor="zoom-in";
-                document.getElementById("banff").style.transform = "scale(5)";
-                document.getElementById("banff").style.transition = "transform 1.5s";
-            }
-
-            function zoomout(){
-                document.getElementById("banff").style.transform = "scale(1)";
-                document.getElementById("banff").style.cursor="zoom-out";
-            }
-
-        </script>
-
-        <!-- Q2: -->
-        <h1>Zoom-in Zoom-out</h1>
-        <h3>Hover over the image to zoom-in and click to zoom-out</h3>
-
-        <div class="img-position" style="text-align: center">
-            <img src="banff2.jpg" id="banff" onmouseover="zoomin()" onclick="zoomout()" class="&#xF62D" width="300px" height="200px">
-          </div>
     </body>
+    <script src="script.js"></script>
 </html>
